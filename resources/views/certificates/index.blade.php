@@ -2,15 +2,14 @@
 
 @section('content')
 <h1 class="text-xl font-bold mb-4">Sertifikat</h1>
-<div class="bg-white shadow rounded p-4">
-    <form method="get" class="mb-4 flex gap-2">
-        <input type="text" name="search" value="{{ $search }}" placeholder="Search" class="border rounded p-2 flex-1" />
-        <button class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-2 rounded">Cari</button>
-    </form>
-    <a href="{{ route('certificates.create') }}" class="bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded inline-block mb-4">Tambah Sertifikat</a>
-    <table class="min-w-full divide-y divide-gray-200">
-    <thead class="bg-gray-50">
-        <tr class="border-b">
+<form method="get" class="mb-4">
+    <input type="text" name="search" value="{{ $search }}" placeholder="Search" class="border p-1" />
+    <button class="bg-blue-500 text-white px-2 py-1">Cari</button>
+</form>
+<a href="{{ route('certificates.create') }}" class="bg-green-500 text-white px-2 py-1 mb-4 inline-block">Tambah Sertifikat</a>
+<table class="table-auto w-full mb-4">
+    <thead>
+        <tr>
             <th>Kode</th>
             <th>Nama Pemegang</th>
             <th>No Sertifikat</th>
