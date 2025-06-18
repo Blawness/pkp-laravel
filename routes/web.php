@@ -17,9 +17,7 @@ Route::middleware('auth')->group(function () {
     Route::get('logs', [ActivityLogController::class, 'index'])->middleware('role:admin');
 
     Route::middleware('verified')->group(function () {
-        Route::get('dashboard', function () {
-            return Inertia::render('dashboard');
-        })->name('dashboard');
+        Route::get('dashboard', \App\Http\Controllers\DashboardController::class)->name('dashboard');
     });
 });
 
