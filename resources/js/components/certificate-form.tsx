@@ -82,7 +82,7 @@ export default function CertificateForm({ onSuccess }: { onSuccess?: () => void 
                 <InputError message={errors.pendaftaran_pertama} />
             </div>
             <div className="flex justify-end gap-2">
-                <Button type="submit" disabled={processing} className="bg-primary hover:bg-primary/90 text-white font-medium rounded-md px-4 py-2 shadow-sm transition">
+                <Button type="submit" disabled={processing} className="bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg px-4 py-2">
                     Save
                 </Button>
             </div>
