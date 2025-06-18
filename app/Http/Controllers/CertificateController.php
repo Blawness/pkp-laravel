@@ -62,7 +62,7 @@ class CertificateController extends Controller
     }
 
 
-    public function destroy(Certificate $certificate)
+    public function destroy(Request $request, Certificate $certificate)
     {
         $certificate->delete();
 
