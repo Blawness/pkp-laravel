@@ -19,22 +19,23 @@
     </thead>
     <tbody>
         @foreach($certificates as $c)
-        <tr>
-            <td>{{ $c->kode }}</td>
-            <td>{{ $c->nama_pemegang }}</td>
-            <td>{{ $c->no_sertifikat }}</td>
-            <td>{{ $c->luas_m2 }}</td>
-            <td>
-                <a href="{{ route('certificates.edit', $c) }}" class="text-blue-500">Edit</a>
+        <tr class="border-b">
+            <td class="py-2">{{ $c->kode }}</td>
+            <td class="py-2">{{ $c->nama_pemegang }}</td>
+            <td class="py-2">{{ $c->no_sertifikat }}</td>
+            <td class="py-2">{{ $c->luas_m2 }}</td>
+            <td class="py-2">
+                <a href="{{ route('certificates.edit', $c) }}" class="text-blue-500 hover:underline">Edit</a>
                 <form action="{{ route('certificates.destroy', $c) }}" method="post" style="display:inline">
                     @csrf
                     @method('delete')
-                    <button class="text-red-500" onclick="return confirm('Delete?')">Delete</button>
+                    <button class="text-red-500 hover:underline" onclick="return confirm('Delete?')">Delete</button>
                 </form>
             </td>
         </tr>
         @endforeach
     </tbody>
 </table>
+</div>
 {{ $certificates->links() }}
 @endsection
