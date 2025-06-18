@@ -53,6 +53,10 @@ class CertificateController extends Controller
             'no_sertifikat' => 'required',
             'lokasi_tanah' => 'required',
             'luas_m2' => 'required|numeric',
+            'tgl_terbit' => 'nullable|date',
+            'surat_ukur' => 'nullable',
+            'nib' => 'nullable',
+            'pendaftaran_pertama' => 'nullable|date',
         ]);
         $cert = Certificate::create($data);
         ActivityLog::create(['user_id' => $request->user()->id, 'description' => 'create certificate '.$cert->id]);
@@ -73,6 +77,10 @@ class CertificateController extends Controller
             'no_sertifikat' => 'required',
             'lokasi_tanah' => 'required',
             'luas_m2' => 'required|numeric',
+            'tgl_terbit' => 'nullable|date',
+            'surat_ukur' => 'nullable',
+            'nib' => 'nullable',
+            'pendaftaran_pertama' => 'nullable|date',
         ]);
         $certificate->update($data);
         ActivityLog::create(['user_id' => $request->user()->id, 'description' => 'update certificate '.$certificate->id]);
