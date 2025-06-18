@@ -70,37 +70,37 @@ export default function CertificatesIndexPage({ certificates, search }: PageProp
             </div>
 
             {/* Certificates Table */}
-            <div className="bg-gray-900 rounded-lg shadow overflow-x-auto mx-auto max-w-[calc(100%-2rem)]">
-                <table className="min-w-full divide-y divide-gray-700 text-center">
-                    <thead className="bg-gray-800 border-b border-gray-700">
+            <div className="overflow-x-auto">
+                <table className="min-w-full whitespace-nowrap text-sm">
+                    <thead className="bg-primary/10 text-left">
                         <tr>
-                            <th className="px-6 py-3 text-sm font-semibold text-gray-300">No</th>
-                            <th className="px-6 py-3 text-sm font-semibold text-gray-300">Kode</th>
-                            <th className="px-6 py-3 text-sm font-semibold text-gray-300">Nama Pemegang</th>
-                            <th className="px-6 py-3 text-sm font-semibold text-gray-300">Surat Hak</th>
-                            <th className="px-6 py-3 text-sm font-semibold text-gray-300">No Sertifikat</th>
-                            <th className="px-6 py-3 text-sm font-semibold text-gray-300">Letak Tanah</th>
-                            <th className="px-6 py-3 text-sm font-semibold text-gray-300">Luas (M2)</th>
-                            <th className="px-6 py-3 text-sm font-semibold text-gray-300">Tgl Terbit</th>
-                            <th className="px-6 py-3 text-sm font-semibold text-gray-300">Surat Ukur</th>
-                            <th className="px-6 py-3 text-sm font-semibold text-gray-300">NIB</th>
-                            <th className="px-6 py-3 text-sm font-semibold text-gray-300">Pendaftaran Pertama</th>
+                            <th className="px-4 py-2">No</th>
+                            <th className="px-4 py-2">Kode</th>
+                            <th className="px-4 py-2">Nama Pemegang</th>
+                            <th className="px-4 py-2">Surat Hak</th>
+                            <th className="px-4 py-2">No Sertifikat</th>
+                            <th className="px-4 py-2">Letak Tanah</th>
+                            <th className="px-4 py-2">Luas (M2)</th>
+                            <th className="px-4 py-2">Tgl Terbit</th>
+                            <th className="px-4 py-2">Surat Ukur</th>
+                            <th className="px-4 py-2">NIB</th>
+                            <th className="px-4 py-2">Pendaftaran Pertama</th>
                         </tr>
                     </thead>
-                    <tbody className="divide-y divide-gray-700">
+                    <tbody className="[&>tr]:odd:bg-primary/5">
                         {certificates.data.map((c, idx) => (
-                            <tr key={c.id} className="hover:bg-gray-800">
-                                <td className="px-6 py-4 text-sm text-gray-200">{idx + 1}</td>
-                                <td className="px-6 py-4 text-sm text-gray-200">{c.kode}</td>
-                                <td className="px-6 py-4 text-sm text-gray-200">{c.nama_pemegang}</td>
-                                <td className="px-6 py-4 text-sm text-gray-200">{c.surat_hak}</td>
-                                <td className="px-6 py-4 text-sm text-gray-200">{c.no_sertifikat}</td>
-                                <td className="px-6 py-4 text-sm text-gray-200">{c.lokasi_tanah}</td>
-                                <td className="px-6 py-4 text-sm text-gray-200">{c.luas_m2}</td>
-                                <td className="px-6 py-4 text-sm text-gray-200">{c.tgl_terbit ?? '-'}</td>
-                                <td className="px-6 py-4 text-sm text-gray-200">{c.surat_ukur ?? '-'}</td>
-                                <td className="px-6 py-4 text-sm text-gray-200">{c.nib ?? '-'}</td>
-                                <td className="px-6 py-4 text-sm text-gray-200">{c.pendaftaran_pertama ?? '-'}</td>
+                            <tr key={c.id} className="text-center sm:text-left">
+                                <td className="px-4 py-2">{idx + 1}</td>
+                                <td className="px-4 py-2">{c.kode}</td>
+                                <td className="px-4 py-2">{c.nama_pemegang}</td>
+                                <td className="px-4 py-2">{c.surat_hak}</td>
+                                <td className="px-4 py-2">{c.no_sertifikat}</td>
+                                <td className="px-4 py-2">{c.lokasi_tanah}</td>
+                                <td className="px-4 py-2">{c.luas_m2}</td>
+                                <td className="px-4 py-2">{c.tgl_terbit ?? '-'}</td>
+                                <td className="px-4 py-2">{c.surat_ukur ?? '-'}</td>
+                                <td className="px-4 py-2">{c.nib ?? '-'}</td>
+                                <td className="px-4 py-2">{c.pendaftaran_pertama ?? '-'}</td>
                             </tr>
                         ))}
                     </tbody>
