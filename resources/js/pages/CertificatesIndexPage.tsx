@@ -55,7 +55,7 @@ export default function CertificatesIndexPage({ certificates, search }: PageProp
                     <DialogTrigger asChild>
                         <Button
                             size="sm"
-                            className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md font-medium shadow-sm transition"
+                            className="bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg px-4 py-2"
                         >
                             Add Certificate
                         </Button>
@@ -70,37 +70,37 @@ export default function CertificatesIndexPage({ certificates, search }: PageProp
             </div>
 
             {/* Certificates Table */}
-            <div className="overflow-x-auto bg-white shadow rounded-lg">
-                <table className="min-w-full divide-y divide-gray-200">
-                    <thead>
-                        <tr className="bg-gray-50">
-                            <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">No</th>
-                            <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Kode</th>
-                            <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Nama Pemegang</th>
-                            <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Surat Hak</th>
-                            <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">No Sertifikat</th>
-                            <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Letak Tanah</th>
-                            <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Luas (M2)</th>
-                            <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Tgl Terbit</th>
-                            <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Surat Ukur</th>
-                            <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">NIB</th>
-                            <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Pendaftaran Pertama</th>
+            <div className="bg-gray-900 rounded-lg shadow overflow-x-auto mx-auto max-w-[calc(100%-2rem)]">
+                <table className="min-w-full divide-y divide-gray-700 text-center">
+                    <thead className="bg-gray-800 border-b border-gray-700">
+                        <tr>
+                            <th className="px-6 py-3 text-sm font-semibold text-gray-300">No</th>
+                            <th className="px-6 py-3 text-sm font-semibold text-gray-300">Kode</th>
+                            <th className="px-6 py-3 text-sm font-semibold text-gray-300">Nama Pemegang</th>
+                            <th className="px-6 py-3 text-sm font-semibold text-gray-300">Surat Hak</th>
+                            <th className="px-6 py-3 text-sm font-semibold text-gray-300">No Sertifikat</th>
+                            <th className="px-6 py-3 text-sm font-semibold text-gray-300">Letak Tanah</th>
+                            <th className="px-6 py-3 text-sm font-semibold text-gray-300">Luas (M2)</th>
+                            <th className="px-6 py-3 text-sm font-semibold text-gray-300">Tgl Terbit</th>
+                            <th className="px-6 py-3 text-sm font-semibold text-gray-300">Surat Ukur</th>
+                            <th className="px-6 py-3 text-sm font-semibold text-gray-300">NIB</th>
+                            <th className="px-6 py-3 text-sm font-semibold text-gray-300">Pendaftaran Pertama</th>
                         </tr>
                     </thead>
-                    <tbody className="divide-y divide-gray-200">
+                    <tbody className="divide-y divide-gray-700">
                         {certificates.data.map((c, idx) => (
-                            <tr key={c.id} className="hover:bg-gray-100">
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{idx + 1}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{c.kode}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{c.nama_pemegang}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{c.surat_hak}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{c.no_sertifikat}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{c.lokasi_tanah}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{c.luas_m2}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{c.tgl_terbit ?? '-'}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{c.surat_ukur ?? '-'}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{c.nib ?? '-'}</td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{c.pendaftaran_pertama ?? '-'}</td>
+                            <tr key={c.id} className="hover:bg-gray-800">
+                                <td className="px-6 py-4 text-sm text-gray-200">{idx + 1}</td>
+                                <td className="px-6 py-4 text-sm text-gray-200">{c.kode}</td>
+                                <td className="px-6 py-4 text-sm text-gray-200">{c.nama_pemegang}</td>
+                                <td className="px-6 py-4 text-sm text-gray-200">{c.surat_hak}</td>
+                                <td className="px-6 py-4 text-sm text-gray-200">{c.no_sertifikat}</td>
+                                <td className="px-6 py-4 text-sm text-gray-200">{c.lokasi_tanah}</td>
+                                <td className="px-6 py-4 text-sm text-gray-200">{c.luas_m2}</td>
+                                <td className="px-6 py-4 text-sm text-gray-200">{c.tgl_terbit ?? '-'}</td>
+                                <td className="px-6 py-4 text-sm text-gray-200">{c.surat_ukur ?? '-'}</td>
+                                <td className="px-6 py-4 text-sm text-gray-200">{c.nib ?? '-'}</td>
+                                <td className="px-6 py-4 text-sm text-gray-200">{c.pendaftaran_pertama ?? '-'}</td>
                             </tr>
                         ))}
                     </tbody>
