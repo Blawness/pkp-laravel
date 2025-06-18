@@ -13,6 +13,10 @@ export default function CertificateForm({ onSuccess }: { onSuccess?: () => void 
         no_sertifikat: '',
         lokasi_tanah: '',
         luas_m2: '',
+        tgl_terbit: '',
+        surat_ukur: '',
+        nib: '',
+        pendaftaran_pertama: '',
     });
 
     const submit: FormEventHandler = (e) => {
@@ -56,6 +60,26 @@ export default function CertificateForm({ onSuccess }: { onSuccess?: () => void 
                 <Label htmlFor="luas_m2">Luas (m2)</Label>
                 <Input id="luas_m2" type="number" value={data.luas_m2} onChange={(e) => setData('luas_m2', e.target.value)} required />
                 <InputError message={errors.luas_m2} />
+            </div>
+            <div className="grid gap-2">
+                <Label htmlFor="tgl_terbit">Tgl Terbit</Label>
+                <Input id="tgl_terbit" type="date" value={data.tgl_terbit} onChange={(e) => setData('tgl_terbit', e.target.value)} />
+                <InputError message={errors.tgl_terbit} />
+            </div>
+            <div className="grid gap-2">
+                <Label htmlFor="surat_ukur">Surat Ukur</Label>
+                <Input id="surat_ukur" value={data.surat_ukur} onChange={(e) => setData('surat_ukur', e.target.value)} />
+                <InputError message={errors.surat_ukur} />
+            </div>
+            <div className="grid gap-2">
+                <Label htmlFor="nib">NIB</Label>
+                <Input id="nib" value={data.nib} onChange={(e) => setData('nib', e.target.value)} />
+                <InputError message={errors.nib} />
+            </div>
+            <div className="grid gap-2">
+                <Label htmlFor="pendaftaran_pertama">Pendaftaran Pertama</Label>
+                <Input id="pendaftaran_pertama" type="date" value={data.pendaftaran_pertama} onChange={(e) => setData('pendaftaran_pertama', e.target.value)} />
+                <InputError message={errors.pendaftaran_pertama} />
             </div>
             <div className="flex justify-end gap-2">
                 <Button type="submit" disabled={processing} className="bg-primary hover:bg-primary/90 text-white font-medium rounded-md px-4 py-2 shadow-sm transition">

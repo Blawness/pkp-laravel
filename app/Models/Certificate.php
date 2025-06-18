@@ -16,5 +16,9 @@ class Certificate extends Model
         'no_sertifikat',
         'lokasi_tanah',
         'luas_m2',
+        'tgl_terbit',
+        'surat_ukur',
+        'nib',
+        'pendaftaran_pertama',
     ];
 }

@@ -30,26 +30,28 @@ export default function UsersIndexPage({ users }: PageProps) {
                     Add User
                 </Button>
             </div>
-            <table className="w-full text-sm">
-                <thead>
-                    <tr className="border-b text-left">
-                        <th className="py-2">Name</th>
-                        <th className="py-2">Email</th>
-                        <th className="py-2">Role</th>
-                        <th className="py-2">Created</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {users.data.map((u) => (
-                        <tr key={u.id} className="border-b hover:bg-muted/50">
-                            <td className="py-2 px-1">{u.name}</td>
-                            <td className="py-2 px-1">{u.email}</td>
-                            <td className="py-2 px-1">{u.role}</td>
-                            <td className="py-2 px-1">{u.created_at}</td>
+            <div className="overflow-x-auto bg-white shadow rounded-lg">
+                <table className="min-w-full divide-y divide-gray-200">
+                    <thead>
+                        <tr className="bg-gray-50">
+                            <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Name</th>
+                            <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Email</th>
+                            <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Role</th>
+                            <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider">Created</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody className="divide-y divide-gray-200">
+                        {users.data.map((u) => (
+                            <tr key={u.id} className="hover:bg-gray-100">
+                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{u.name}</td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{u.email}</td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{u.role}</td>
+                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{u.created_at}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </AppLayout>
     );
 }
