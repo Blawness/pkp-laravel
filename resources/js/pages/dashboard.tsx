@@ -1,7 +1,4 @@
 import AppLayout from '@/layouts/app-layout';
-import CertificatePreviewTable, { type Certificate } from '@/components/certificate-preview-table';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { type BreadcrumbItem, type SharedData } from '@/types';
 import { Head, Link, usePage } from '@inertiajs/react';
@@ -14,43 +11,59 @@ const breadcrumbs: BreadcrumbItem[] = [
 ];
 
 interface PageProps extends SharedData {
-    certificates: Certificate[];
-    search?: string;
+    stats: {
+        certificates: number;
+        users: number;
+        logs: number;
+    };
 }
 
 export default function Dashboard() {
-    const { certificates, search } = usePage<PageProps>().props;
+    const { stats } = usePage<PageProps>().props;
 
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Dashboard" />
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 p-4">
-                <Card className="sm:col-span-2 lg:col-span-2">
+                <Card>
                     <CardHeader>
                         <CardTitle>Sertifikat</CardTitle>
                     </CardHeader>
-                    <CardContent className="space-y-4">
-                        <form method="get" className="flex flex-wrap gap-2">
-                            <Input name="search" defaultValue={search ?? ''} placeholder="Cari sertifikat..." />
-                            <Button type="submit">Cari</Button>
-                            <Button asChild variant="secondary">
-                                <Link href="/certificates/create">Tambah Sertifikat</Link>
-                            </Button>
-                        </form>
-                        <CertificatePreviewTable certificates={certificates} />
-                        <div className="text-right">
-                            <Link href="/certificates" className="text-primary hover:underline">
-                                Lihat Semua
+                    <CardContent>
+                        <p className="text-3xl font-bold">{stats.certificates}</p>
+                        <div className="mt-2">
+                            <Link href="/certificates" className="text-primary hover:underline text-sm">
+                                View All
                             </Link>
                         </div>
                     </CardContent>
                 </Card>
-                <Link href="/users" className="block rounded-lg border p-6 text-center hover:bg-gray-50 dark:hover:bg-neutral-800">
-                    User
-                </Link>
-                <Link href="/logs" className="block rounded-lg border p-6 text-center hover:bg-gray-50 dark:hover:bg-neutral-800">
-                    Log
-                </Link>
+                <Card>
+                    <CardHeader>
+                        <CardTitle>User</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <p className="text-3xl font-bold">{stats.users}</p>
+                        <div className="mt-2">
+                            <Link href="/users" className="text-primary hover:underline text-sm">
+                                View All
+                            </Link>
+                        </div>
+                    </CardContent>
+                </Card>
+                <Card>
+                    <CardHeader>
+                        <CardTitle>Log</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <p className="text-3xl font-bold">{stats.logs}</p>
+                        <div className="mt-2">
+                            <Link href="/logs" className="text-primary hover:underline text-sm">
+                                View All
+                            </Link>
+                        </div>
+                    </CardContent>
+                </Card>
             </div>
         </AppLayout>
     );

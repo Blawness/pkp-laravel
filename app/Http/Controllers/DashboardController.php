@@ -2,20 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\CertificateController;
-use Illuminate\Http\Request;
+use App\Models\ActivityLog;
+use App\Models\Certificate;
+use App\Models\User;
 use Inertia\Inertia;
 
 class DashboardController extends Controller
 {
-    public function __invoke(Request $request)
+    public function __invoke()
     {
-        $search = $request->query('search');
-        $certificates = CertificateController::preview($search);
+        $stats = [
+            'certificates' => Certificate::count(),
+            'users' => User::count(),
+            'logs' => ActivityLog::count(),
+        ];
 
         return Inertia::render('dashboard', [
-            'certificates' => $certificates,
-            'search' => $search,
+            'stats' => $stats,
         ]);
     }
 }
