@@ -41,3 +41,21 @@ export interface User {
     updated_at: string;
     [key: string]: unknown; // This allows for additional properties...
 }
+
+export interface Certificate {
+    id: number;
+    kode: string;
+    nama_pemegang: string;
+    no_sertifikat: string;
+    luas_m2: number;
+    [key: string]: unknown;
+}
+
+export interface ActivityLog {
+    id: number;
+    user_id: number | null;
+    description: string;
+    created_at: string;
+    user?: User | null;
+    [key: string]: unknown;
+}

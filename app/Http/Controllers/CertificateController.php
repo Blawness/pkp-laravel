@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Certificate;
 use App\Models\ActivityLog;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class CertificateController extends Controller
 {
@@ -18,7 +19,10 @@ class CertificateController extends Controller
         }
         $certificates = $query->paginate(10);
 
-        return view('certificates.index', compact('certificates', 'search'));
+        return Inertia::render('CertificatesIndexPage', [
+            'certificates' => $certificates,
+            'search' => $search,
+        ]);
     }
 
     public function create()
