@@ -6,9 +6,16 @@ use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ActivityLogController;
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+// Redirect root URL to the certificate manager
+Route::redirect('/', '/certificates');
+
+Route::middleware('auth')->group(function () {
+    Route::resource('certificates', CertificateController::class);
+    Route::resource('users', UserController::class)->middleware('role:admin');
+    Route::get('logs', [ActivityLogController::class, 'index'])->middleware('role:admin');
+});
+
+require __DIR__.'/auth.php';
 
 Route::middleware('auth')->group(function () {
     Route::resource('certificates', CertificateController::class);
