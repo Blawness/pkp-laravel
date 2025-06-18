@@ -11,18 +11,34 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1️⃣  PHP
       - uses: shivammathur/setup-php@v2
         with:
           php-version: '8.3'
           extensions: sqlite3
           coverage: none
 
+      # 2️⃣  Clone repo
       - uses: actions/checkout@v4
 
+      # 3️⃣  Node ▶ Build assets  ──────────────────────────────
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install JS dependencies & build Vite bundle
+        run: |
+          npm ci
+          npm run build                         # creates public/build/manifest.json
+      # ─────────────────────────────────────────────────────────
+
+      # 4️⃣  PHP deps
       - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
 
-      - name: Install Dependencies
+      - name: Install Composer dependencies
         run: composer install --no-interaction --prefer-dist
 
       - name: Generate key
@@ -31,12 +47,14 @@ jobs:
       - name: Directory Permissions
         run: chmod -R 777 storage bootstrap/cache
 
+      # 5️⃣  SQLite for tests
       - name: Create Database
         run: |
           mkdir -p database
           touch database/database.sqlite
 
-      - name: Execute tests (Unit and Feature tests) via PHPUnit/Pest
+      # 6️⃣  Run PHPUnit / Pest
+      - name: Execute tests (Unit and Feature tests)
         env:
           DB_CONNECTION: sqlite
           DB_DATABASE: database/database.sqlite
