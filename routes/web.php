@@ -12,9 +12,11 @@ Route::get('/', function () {
 })->name('home');
 
 Route::middleware('auth')->group(function () {
-    Route::resource('certificates', CertificateController::class);
-    Route::resource('users', UserController::class)->middleware('role:admin');
-    Route::get('logs', [ActivityLogController::class, 'index'])->middleware('role:admin');
+    Route::get('/certificates', [CertificateController::class, 'index'])->name('certificates.index');
+    Route::resource('certificates', CertificateController::class)->except('index');
+    Route::get('/users', [UserController::class, 'index'])->name('users.index')->middleware('role:admin');
+    Route::resource('users', UserController::class)->except('index')->middleware('role:admin');
+    Route::get('/logs', [ActivityLogController::class, 'index'])->name('logs.index')->middleware('role:admin');
 
     Route::middleware('verified')->group(function () {
         Route::get('dashboard', \App\Http\Controllers\DashboardController::class)->name('dashboard');
