@@ -1,6 +1,8 @@
 import AppLayout from '@/layouts/app-layout';
-import { type BreadcrumbItem } from '@/types';
-import { Head, Link } from '@inertiajs/react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { type BreadcrumbItem, type SharedData } from '@/types';
+import { Head, Link, usePage } from '@inertiajs/react';
+import { ChevronRight } from 'lucide-react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -9,20 +11,37 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
+interface PageProps extends SharedData {
+    stats: {
+        certificates: number;
+        users: number;
+        logs: number;
+    };
+}
+
 export default function Dashboard() {
+    const { stats } = usePage<PageProps>().props;
+
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Dashboard" />
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 p-4">
-                <Link href="/certificates" className="block rounded-lg border p-6 text-center hover:bg-gray-50 dark:hover:bg-neutral-800">
-                    Sertifikat
-                </Link>
-                <Link href="/users" className="block rounded-lg border p-6 text-center hover:bg-gray-50 dark:hover:bg-neutral-800">
-                    User
-                </Link>
-                <Link href="/logs" className="block rounded-lg border p-6 text-center hover:bg-gray-50 dark:hover:bg-neutral-800">
-                    Log
-                </Link>
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 p-6">
+                {(['certificates', 'users', 'logs'] as const).map((key) => (
+                    <Card key={key} className="hover:shadow-lg transition-shadow">
+                        <CardHeader>
+                            <CardTitle className="capitalize">{key}</CardTitle>
+                        </CardHeader>
+                        <CardContent className="flex flex-col items-start">
+                            <p className="text-4xl font-bold">{stats[key]}</p>
+                            <Link
+                                href={`/${key}`}
+                                className="mt-4 inline-flex items-center text-sm font-medium text-primary hover:text-primary-dark"
+                            >
+                                View All <ChevronRight className="ml-1 size-4" />
+                            </Link>
+                        </CardContent>
+                    </Card>
+                ))}
             </div>
         </AppLayout>
     );
