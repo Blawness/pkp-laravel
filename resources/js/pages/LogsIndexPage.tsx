@@ -25,21 +25,21 @@ export default function LogsIndexPage({ logs }: PageProps) {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Logs" />
-            <div className="bg-gray-900 rounded-lg shadow overflow-x-auto mx-auto max-w-[calc(100%-2rem)]">
-                <table className="min-w-full divide-y divide-gray-700 text-center">
-                    <thead className="bg-gray-800 border-b border-gray-700">
+            <div className="overflow-x-auto">
+                <table className="min-w-full whitespace-nowrap text-sm">
+                    <thead className="bg-primary/10 text-left">
                         <tr>
-                            <th className="px-6 py-3 text-sm font-semibold text-gray-300">User</th>
-                            <th className="px-6 py-3 text-sm font-semibold text-gray-300">Description</th>
-                            <th className="px-6 py-3 text-sm font-semibold text-gray-300">Date</th>
+                            <th className="px-4 py-2">User</th>
+                            <th className="px-4 py-2">Description</th>
+                            <th className="px-4 py-2">Date</th>
                         </tr>
                     </thead>
-                    <tbody className="divide-y divide-gray-700">
+                    <tbody className="[&>tr]:odd:bg-primary/5">
                         {logs.data.map((log) => (
-                            <tr key={log.id} className="hover:bg-gray-800">
-                                <td className="px-6 py-4 text-sm text-gray-200">{log.user?.name ?? '-'}</td>
-                                <td className="px-6 py-4 text-sm text-gray-200">{log.description}</td>
-                                <td className="px-6 py-4 text-sm text-gray-200">{log.created_at}</td>
+                            <tr key={log.id} className="text-center sm:text-left">
+                                <td className="px-4 py-2">{log.user?.name ?? '-'}</td>
+                                <td className="px-4 py-2">{log.description}</td>
+                                <td className="px-4 py-2">{log.created_at}</td>
                             </tr>
                         ))}
                     </tbody>

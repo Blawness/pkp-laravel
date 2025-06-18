@@ -1,7 +1,7 @@
 import AppLayout from '@/layouts/app-layout';
-import { type BreadcrumbItem } from '@/types';
-import { Head } from '@inertiajs/react';
-import { Button } from '@/components/ui/button';
+import { type BreadcrumbItem, type SharedData } from '@/types';
+import { Head, usePage } from '@inertiajs/react';
+import AddUserModal from '@/components/add-user-modal';
 
 interface User {
     id: number;
@@ -22,31 +22,30 @@ const breadcrumbs: BreadcrumbItem[] = [
 ];
 
 export default function UsersIndexPage({ users }: PageProps) {
+    const { auth } = usePage<SharedData>().props;
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Users" />
             <div className="flex items-center justify-end mb-6">
-                <Button size="sm" className="bg-primary hover:bg-primary/90 text-white">
-                    Add User
-                </Button>
+                {auth.user.role === 'admin' && <AddUserModal />}
             </div>
-            <div className="bg-gray-900 rounded-lg shadow overflow-x-auto mx-auto max-w-[calc(100%-2rem)]">
-                <table className="min-w-full divide-y divide-gray-700 text-center">
-                    <thead className="bg-gray-800 border-b border-gray-700">
+            <div className="overflow-x-auto">
+                <table className="min-w-full whitespace-nowrap text-sm">
+                    <thead className="bg-primary/10 text-left">
                         <tr>
-                            <th className="px-6 py-3 text-sm font-semibold text-gray-300">Name</th>
-                            <th className="px-6 py-3 text-sm font-semibold text-gray-300">Email</th>
-                            <th className="px-6 py-3 text-sm font-semibold text-gray-300">Role</th>
-                            <th className="px-6 py-3 text-sm font-semibold text-gray-300">Created</th>
+                            <th className="px-4 py-2">Name</th>
+                            <th className="px-4 py-2">Email</th>
+                            <th className="px-4 py-2">Role</th>
+                            <th className="px-4 py-2">Created</th>
                         </tr>
                     </thead>
-                    <tbody className="divide-y divide-gray-700">
+                    <tbody className="[&>tr]:odd:bg-primary/5">
                         {users.data.map((u) => (
-                            <tr key={u.id} className="hover:bg-gray-800">
-                                <td className="px-6 py-4 text-sm text-gray-200">{u.name}</td>
-                                <td className="px-6 py-4 text-sm text-gray-200">{u.email}</td>
-                                <td className="px-6 py-4 text-sm text-gray-200">{u.role}</td>
-                                <td className="px-6 py-4 text-sm text-gray-200">{u.created_at}</td>
+                            <tr key={u.id} className="text-center sm:text-left">
+                                <td className="px-4 py-2">{u.name}</td>
+                                <td className="px-4 py-2">{u.email}</td>
+                                <td className="px-4 py-2">{u.role}</td>
+                                <td className="px-4 py-2">{u.created_at.slice(0, 10)}</td>
                             </tr>
                         ))}
                     </tbody>
