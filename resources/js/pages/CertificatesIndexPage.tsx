@@ -3,6 +3,14 @@ import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import {
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from '@/components/ui/dialog';
+import CertificateForm from '@/components/certificate-form';
 
 interface Certificate {
     id: number;
@@ -27,6 +35,8 @@ export default function CertificatesIndexPage({ certificates, search }: PageProp
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Certificates" />
+
+            {/* Search + Add Button */}
             <div className="flex items-center justify-between mb-6">
                 <Input
                     name="search"
@@ -34,17 +44,33 @@ export default function CertificatesIndexPage({ certificates, search }: PageProp
                     defaultValue={search}
                     className="w-1/3"
                 />
-                <Button size="sm" className="bg-primary hover:bg-primary/90 text-white">
-                    Add Certificate
-                </Button>
+
+                <Dialog>
+                    <DialogTrigger asChild>
+                        <Button
+                            size="sm"
+                            className="bg-primary hover:bg-primary/90 text-white font-medium rounded-md px-4 py-2 shadow-sm transition"
+                        >
+                            Add Certificate
+                        </Button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-lg">
+                        <DialogHeader>
+                            <DialogTitle>Add Certificate</DialogTitle>
+                        </DialogHeader>
+                        <CertificateForm />
+                    </DialogContent>
+                </Dialog>
             </div>
+
+            {/* Certificates Table */}
             <table className="w-full text-sm">
                 <thead>
                     <tr className="border-b text-left">
-                        <th className="py-2">Kode</th>
-                        <th className="py-2">Nama Pemegang</th>
-                        <th className="py-2">No Sertifikat</th>
-                        <th className="py-2">Luas (m2)</th>
+                        <th className="py-2 px-1">Kode</th>
+                        <th className="py-2 px-1">Nama Pemegang</th>
+                        <th className="py-2 px-1">No Sertifikat</th>
+                        <th className="py-2 px-1">Luas (m2)</th>
                     </tr>
                 </thead>
                 <tbody>
