@@ -6,8 +6,10 @@ use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ActivityLogController;
 
+
 // Redirect visitors to the login page
 Route::redirect('/', '/login');
+
 
 Route::middleware('auth')->group(function () {
     Route::resource('certificates', CertificateController::class);
