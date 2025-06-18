@@ -35,6 +35,8 @@ export default function CertificatesIndexPage({ certificates, search }: PageProp
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Certificates" />
+
+            {/* Search + Add Button */}
             <div className="flex items-center justify-between mb-6">
                 <Input
                     name="search"
@@ -42,6 +44,7 @@ export default function CertificatesIndexPage({ certificates, search }: PageProp
                     defaultValue={search}
                     className="w-1/3"
                 />
+
                 <Dialog>
                     <DialogTrigger asChild>
                         <Button
@@ -51,7 +54,7 @@ export default function CertificatesIndexPage({ certificates, search }: PageProp
                             Add Certificate
                         </Button>
                     </DialogTrigger>
-                    <DialogContent>
+                    <DialogContent className="max-w-lg">
                         <DialogHeader>
                             <DialogTitle>Add Certificate</DialogTitle>
                         </DialogHeader>
@@ -59,13 +62,15 @@ export default function CertificatesIndexPage({ certificates, search }: PageProp
                     </DialogContent>
                 </Dialog>
             </div>
+
+            {/* Certificates Table */}
             <table className="w-full text-sm">
                 <thead>
                     <tr className="border-b text-left">
-                        <th className="py-2">Kode</th>
-                        <th className="py-2">Nama Pemegang</th>
-                        <th className="py-2">No Sertifikat</th>
-                        <th className="py-2">Luas (m2)</th>
+                        <th className="py-2 px-1">Kode</th>
+                        <th className="py-2 px-1">Nama Pemegang</th>
+                        <th className="py-2 px-1">No Sertifikat</th>
+                        <th className="py-2 px-1">Luas (m2)</th>
                     </tr>
                 </thead>
                 <tbody>

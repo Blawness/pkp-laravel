@@ -25,8 +25,9 @@ export default function Dashboard() {
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Dashboard" />
+
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 p-6">
-                {(['certificates', 'users', 'logs'] as const).map((key) => (
+                {(Object.keys(stats) as Array<keyof PageProps['stats']>).map((key) => (
                     <Card key={key} className="hover:shadow-lg transition-shadow">
                         <CardHeader>
                             <CardTitle className="capitalize">{key}</CardTitle>
@@ -46,3 +47,4 @@ export default function Dashboard() {
         </AppLayout>
     );
 }
+

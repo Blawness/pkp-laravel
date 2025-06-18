@@ -9,6 +9,20 @@ use Inertia\Inertia;
 
 class CertificateController extends Controller
 {
+    /**
+     * Get a limited list of certificates for dashboard preview.
+     */
+    public static function preview(?string $search = null, int $limit = 5)
+    {
+        $query = Certificate::query();
+
+        if ($search) {
+            $query->where('kode', 'like', "%{$search}%")
+                  ->orWhere('nama_pemegang', 'like', "%{$search}%");
+        }
+
+        return $query->latest()->take($limit)->get();
+    }
     public function index(Request $request)
     {
         $search = $request->query('search');
