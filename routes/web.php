@@ -6,10 +6,10 @@ use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ActivityLogController;
 
-
-// Redirect visitors to the login page
-Route::redirect('/', '/login');
-
+// Redirect visitors to the login page and provide a named home route for Ziggy
+Route::get('/', function () {
+    return redirect()->route('login');
+})->name('home');
 
 Route::middleware('auth')->group(function () {
     Route::resource('certificates', CertificateController::class);
