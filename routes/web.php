@@ -17,6 +17,14 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
+Route::middleware('auth')->group(function () {
+    Route::resource('certificates', CertificateController::class);
+    Route::resource('users', UserController::class)->middleware('role:admin');
+    Route::get('logs', [ActivityLogController::class, 'index'])->middleware('role:admin');
+});
+
+require __DIR__.'/auth.php';
+
 #Route::middleware(['auth', 'verified'])->group(function () {
 #    Route::get('dashboard', function () {
 #        return Inertia::render('dashboard');

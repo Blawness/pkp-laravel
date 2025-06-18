@@ -61,12 +61,10 @@ class CertificateController extends Controller
         return redirect()->route('certificates.index');
     }
 
-
     public function destroy(Certificate $certificate)
     {
         $certificate->delete();
         ActivityLog::create(['user_id' => $request->user()->id, 'description' => 'delete certificate '.$certificate->id]);
-      main
         return redirect()->route('certificates.index');
     }
 }
